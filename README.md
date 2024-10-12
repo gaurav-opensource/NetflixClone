@@ -69,3 +69,9 @@ npm run start
 -   06:48:53 - Oops! I almost forgot this... bye
 
 ### I'll see you in the next one! 🚀
+
+
+
+Example: "I built a Netflix clone using the MERN stack where users can browse movies and TV shows fetched from the TMDB API. The project includes user authentication and a dynamic UI that displays movie data in an organized way, similar to Netflix
+
+Example: "In my Netflix clone, user authentication is essential for securing user accounts and ensuring that only logged-in users can view personalized content, such as saved movies or watchlists."

@@ -1,52 +1,52 @@
 import { User } from "../models/user.model.js";
 import bcryptjs from "bcryptjs";
-import { generateTokenAndSetCookie } from "../utils/generateToken.js";
+import { generateTokenAndSetCookie } from "../utils/generateToken.js";  // create token
 
 export async function signup(req, res) {
 	try {
-		const { email, password, username } = req.body;
+		const { email, password, username } = req.body; // input
 
-		if (!email || !password || !username) {
+		if (!email || !password || !username) {// check
 			return res.status(400).json({ success: false, message: "All fields are required" });
 		}
 
-		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // for email diff way
 
 		if (!emailRegex.test(email)) {
 			return res.status(400).json({ success: false, message: "Invalid email" });
 		}
 
-		if (password.length < 6) {
+		if (password.length < 6) { // check password
 			return res.status(400).json({ success: false, message: "Password must be at least 6 characters" });
 		}
 
-		const existingUserByEmail = await User.findOne({ email: email });
+		const existingUserByEmail = await User.findOne({ email: email });  // email check
 
 		if (existingUserByEmail) {
 			return res.status(400).json({ success: false, message: "Email already exists" });
 		}
 
-		const existingUserByUsername = await User.findOne({ username: username });
+		const existingUserByUsername = await User.findOne({ username: username }); //user name  check from data base
 
 		if (existingUserByUsername) {
 			return res.status(400).json({ success: false, message: "Username already exists" });
 		}
 
-		const salt = await bcryptjs.genSalt(10);
-		const hashedPassword = await bcryptjs.hash(password, salt);
+		const salt = await bcryptjs.genSalt(10);  //This generates a "salt
+		const hashedPassword = await bcryptjs.hash(password, salt); // convert password into hash password
 
 		const PROFILE_PICS = ["/avatar1.png", "/avatar2.png", "/avatar3.png"];
 
-		const image = PROFILE_PICS[Math.floor(Math.random() * PROFILE_PICS.length)];
+		const image = PROFILE_PICS[Math.floor(Math.random() * PROFILE_PICS.length)];//random imge provide
 
-		const newUser = new User({
+		const newUser = new User({ // create new user
 			email,
 			password: hashedPassword,
 			username,
 			image,
 		});
 
-		generateTokenAndSetCookie(newUser._id, res);
+		generateTokenAndSetCookie(newUser._id, res); // token genret for new user
 		await newUser.save();
 
 		res.status(201).json({
@@ -98,7 +98,7 @@ export async function login(req, res) {
 
 export async function logout(req, res) {
 	try {
-		res.clearCookie("jwt-netflix");
+		res.clearCookie("jwt-netflix");// this  is logout function
 		res.status(200).json({ success: true, message: "Logged out successfully" });
 	} catch (error) {
 		console.log("Error in logout controller", error.message);

@@ -50,3 +50,13 @@
 ::-webkit-scrollbar-track {
 	background-color: #1a202c;
 }
+
+.custom-button {
+	background-color: #ff6347; /* Example custom color */
+	border-radius: 50px; /* Make buttons circular */
+	box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3); /* Add a shadow */
+  }
+  .custom-button:hover {
+	background-color: #ff4500; /* Different hover color */
+  }
+  

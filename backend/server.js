@@ -10,7 +10,9 @@ import searchRoutes from "./routes/search.route.js";
 import { ENV_VARS } from "./config/envVars.js";
 import { connectDB } from "./config/db.js";
 import { protectRoute } from "./middleware/protectRoute.js";
-import mongoose from "mongoose";
+
+// import Comment from './routes/comment.route.js';
+
 
 const app = express();
 
@@ -22,6 +24,7 @@ app.use(cookieParser());
 app.set("port", (process.env.PORT || 5000));
 
 app.use("/api/v1/auth/", authRoutes);
+// app.use('/api/comment/', Comment);
 app.use("/api/v1/movie", protectRoute, movieRoutes);
 app.use("/api/v1/tv", protectRoute, tvRoutes);
 app.use("/api/v1/search", protectRoute, searchRoutes);
