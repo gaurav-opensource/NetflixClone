@@ -16,7 +16,7 @@ const Navbar = () => {
 		<header className='max-w-6xl mx-auto flex flex-wrap items-center justify-between p-4 h-20'>
 			<div className='flex items-center gap-10 z-50'>
 				<Link to='/'>
-					<img src='/netflix-logo.png' alt='Netflix Logo' className='w-32 sm:w-40' />
+					<img src='/logo1.png' alt=' Logo' className='w-32 sm:w-40' />
 				</Link>
 
 				{/* desktop navbar items */}
